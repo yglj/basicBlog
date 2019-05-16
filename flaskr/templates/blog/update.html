@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %} 编辑 {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form method="post" >
+        <label for="title">标题：</label>
+        <input id="title" name="title" value="{{ request.form["title"] or post.title}}" required>
+        <label for="body">内容：</label>
+        <textarea id="body" name="body">{{ request.form["body" or post.body ] }}</textarea>
+        <input type="submit" value="提交">
+    </form >
+
+    <form action="{{ url_for('blog.delete', pid=post.id) }}" method="post">
+        <div >
+            <input  type="submit" class="danger"  value="Delete" onclick="confirm('Are your sure!')" >
+{#            不能使用链接来get提交#}
+{#            <a class="danger" href="{{ url_for('blog.delete', pid=post.id) }}"#}
+{#                onclick="return confirm('Are your sure delelte ?')" >删除</a>  #}
+        </div>
+    </form>
+{% endblock %}

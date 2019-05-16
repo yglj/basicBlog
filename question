@@ -1,0 +1,50 @@
+1.工厂函数创建flask应用程序实例
+2.数据表外键关系 外键 关联到 另一个表的字段
+3.执行flask命令时，要在终端改变FLASK_APP确保是本工程的环境，不然找不到命令
+4.模板引擎找不模板目录:
+查看环境env = jinja2.Environment(loader=j.PackageLoader('flaskr', 'templates'))，env.list_templates()
+File | Settings | Project: flask-blog | Project Structure 设置模板路径
+蠢到跟个猪一样，搞了3个小时还是不知道问题出在那，只能新创建文件夹
+5.lask.cli.NoAppException: Application crashing
+
+6.使用bytes把中文转为二进制数据  '中文'.encode('utf-8')
+E     File "C:\Users\yl\Desktop\flask_study\example\basicBlog\tests\test_auth.py", line 45
+E       (('1', 'a', b'用户不存在'), ('a', 'xx', b'密码错误'))
+E                  ^
+E   SyntaxError: bytes can only contain ASCII literal characters.
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 errors during collection !!!!!!!
+
+8.str.encode(encoding="utf-8", errors="strict")¶
+返回原字符串编码为字节串对象的版本。 默认编码为 'utf-8'。
+可以给出 errors 来设置不同的错误处理方案。 errors 的默认值为 'strict'，表示编码错误会引发 UnicodeError。
+其他可用的值为 'ignore', 'replace', 'xmlcharrefreplace', 'backslashreplace'
+以及任何其他通过 codecs.register_error() 注册的值，
+请参阅 Error Handlers 小节。
+要查看可用的编码列表，请参阅 标准编码 小节。
+base64.encode(input, output)¶
+Encode the contents of the binary input file and write the resulting base64 encoded data to the output file. input and output must be file objects.
+bytes 对象
+bytes 对象是由单个字节构成的不可变序列。 由于许多主要二进制协议都基于 ASCII 文本编码，因此 bytes 对象提供了一些仅在处理 ASCII 兼容数据时可用，并且在许多特性上与字符串对象紧密相关的方法
+
+9.TypeError: 'in <string>' requires string as left operand, not bytes
+
+
+总结 25个单元测试错误原因错误
+出现以下错误的原因是：只会照着写，不会动脑子，英语差，记忆力差
+1.方法属性名记错
+status -> status_code
+response['Locction'] -> response.headers['Location']
+
+2.逻辑错误，
+如：
+测试用例密码和姓名搞错，导致错误信息不匹配
+考虑退出时，没验证是否跳转到主页
+明明验证错误地址404，却修改数据让地址正确
+
+3.语法错误
+使用in时，前后数据类型不一致，如二进制对象和字符串比较，要考虑清楚比较两边数据类型
+
+4.前后不一致
+注册错误提示使用中文
+登录错误提示使用英文
+
